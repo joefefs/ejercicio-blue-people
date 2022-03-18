@@ -11,7 +11,7 @@ import {
   TableCell,
 } from "@mui/material";
 
-import { TablePagination } from "@material-ui/core"; //imported from here to avoid warning from @mui/material src
+import { TablePagination } from "@material-ui/core";
 import MyRow from "./MyRow";
 
 function App() {

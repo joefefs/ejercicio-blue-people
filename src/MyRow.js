@@ -4,10 +4,7 @@ import { useState } from "react";
 const MyRow = ({
   row,
   handleSave,
-  handleRemove,
-  data,
-  setData,
-  useInterval,
+  handleRemove
 }) => {
   const [disabled, setDisabled] = useState(true);
   const [value, setValue] = useState(row.title);
