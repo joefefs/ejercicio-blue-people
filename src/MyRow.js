@@ -1,10 +1,9 @@
 import { TableRow, TableCell } from "@mui/material";
 import { useState } from "react";
 
-const MyRow = ({ row, handleSave, handleRemove, setData, data }) => {
+const MyRow = ({ row, handleSave, handleRemove }) => {
   const [disabled, setDisabled] = useState(true);
   const [value, setValue] = useState(row.title);
-
 
   return (
     <>
@@ -18,14 +17,16 @@ const MyRow = ({ row, handleSave, handleRemove, setData, data }) => {
             value={value}
             disabled={disabled}
             className="title"
-            
             onChange={(e) => setValue(e.target.value)}
             name={"title"}
           />
         </TableCell>
-        <TableCell><img src={row.thumbnailUrl} width="60px" height="60px"/></TableCell>
         <TableCell>
-          <button className={`btn-${disabled ? 'edit' : 'done'}`}
+          <img src={row.thumbnailUrl} width="60px" height="60px" />
+        </TableCell>
+        <TableCell>
+          <button
+            className={`btn-${disabled ? "edit" : "done"}`}
             onClick={() => {
               if (disabled) {
                 setDisabled(false);
@@ -40,7 +41,8 @@ const MyRow = ({ row, handleSave, handleRemove, setData, data }) => {
             {disabled ? "Edit" : "Done"}
           </button>
           {!disabled && (
-            <button className="btn-cancel"
+            <button
+              className="btn-cancel"
               onClick={() => {
                 setValue(row.title);
                 setDisabled(true);
@@ -49,11 +51,11 @@ const MyRow = ({ row, handleSave, handleRemove, setData, data }) => {
               Cancel
             </button>
           )}
-          <button className="btn-remove" onClick={() => handleRemove(row.id)}>Remove</button>
+          <button className="btn-remove" onClick={() => handleRemove(row.id)}>
+            Remove
+          </button>
         </TableCell>
-        <TableCell>
-         
-        </TableCell>
+        <TableCell></TableCell>
       </TableRow>
     </>
   );
