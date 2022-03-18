@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./App.css";
 
 import {
@@ -18,6 +18,7 @@ function App() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);
+  const [intervalDelay, setIntervalDelay] = useState(2000);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/photos?_limit=100")
@@ -42,31 +43,57 @@ function App() {
     setData(newData);
   };
 
-  // const interval  = () => {
-
-  //   setInterval(()=>{
-  //   const newData = data.map((row) => {
-  //     return {
-  //       ...row,
-  //       id: Math.floor(Math.random()*1000000),
-  //       albumId: Math.floor(Math.random()*1000000)
-  //     }
-  //   })
-  //   setData(newData)
-
-  // },2000)}
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-  
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
+  const handleClick = () => {
+    if (intervalDelay !== null) {
+      setIntervalDelay(null);
+    }
+    if (intervalDelay === null) {
+      setIntervalDelay(2000);
+    }
+  };
+
+  //  Custom Hook to replace setInterval()
+  const useInterval = (callback, delay) => {
+    const savedCallback = useRef();
+    //remembering las callback
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+
+    //setting interval
+    useEffect(() => {
+      const switchingIds = () => {
+        savedCallback.current();
+      };
+      if (delay !== null) {
+        let intervalId = setInterval(switchingIds, delay);
+        return () => clearInterval(intervalId);
+      }
+    }, [delay]);
+  };
+
+  useInterval(() => {
+    const newData = data.map((row) => {
+      return {
+        ...row,
+        id: Math.floor(Math.random() * 1000000),
+        albumId: Math.floor(Math.random() * 1000000),
+      };
+    });
+    setData(newData);
+  }, intervalDelay);
+
   return (
-    <div>
+    <div className="app-container" onClick={handleClick}>
       <div className="table-container">
         <TableContainer>
           <Table>
@@ -90,6 +117,9 @@ function App() {
                       row={row}
                       handleSave={handleSave}
                       handleRemove={handleRemove}
+                      data={data}
+                      setData={setData}
+                      useInterval={useInterval}
                     />
                   ))
               }
@@ -97,7 +127,7 @@ function App() {
 
             <TableFooter>
               <TablePagination
-                component="div"
+                component="td"
                 count={data.length}
                 rowsPerPage={rowsPerPage}
                 page={page}

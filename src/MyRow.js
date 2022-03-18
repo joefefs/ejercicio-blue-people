@@ -1,13 +1,20 @@
 import { TableRow, TableCell } from "@mui/material";
 import { useState } from "react";
 
-const MyRow = ({ row, handleSave, handleRemove }) => {
+const MyRow = ({
+  row,
+  handleSave,
+  handleRemove,
+  data,
+  setData,
+  useInterval,
+}) => {
   const [disabled, setDisabled] = useState(true);
   const [value, setValue] = useState(row.title);
 
   return (
     <>
-      <TableRow>
+      <TableRow id={row.id} className="my-row">
         <TableCell>{row.id}</TableCell>
         <TableCell>{row.albumId}</TableCell>
         <TableCell key={row.title} id={row.title}>
@@ -22,7 +29,12 @@ const MyRow = ({ row, handleSave, handleRemove }) => {
           />
         </TableCell>
         <TableCell>
-          <img src={row.thumbnailUrl} width="60px" height="60px" />
+          <img
+            src={row.thumbnailUrl}
+            width="60px"
+            height="60px"
+            alt="Object thumbnail"
+          />
         </TableCell>
         <TableCell>
           <button
