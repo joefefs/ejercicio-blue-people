@@ -1,4 +1,89 @@
+*{font-size:.9em;}
 .table-container{
-  padding: 10px 15%;
+  /* padding: 5px 10%; */
+  margin: 5px 10%;
+  /* width: auto; */
+  width: 66.6vw;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.table-container:hover{
+  background-color: #f7f7f7;
 }
 
+input {
+  width: auto;
+
+}
+
+input:disabled {
+  border: none;
+  color: black;
+  background-color: white;
+}
+
+.btn-cancel{
+  margin-left: 20px;
+  border: 2px solid lightcoral ;
+  color: #bd4a4a;
+  font-size: .82em;
+  padding: 5px;
+  height: 25px;
+  border-radius: 1000px;
+  font-weight: 700;
+  box-shadow: 0px 6px 8px -8px grey;
+  cursor: pointer;
+  background-color: rgba(211,211,211,.2)
+}
+
+
+.btn-remove{
+  margin-left: 20px;
+    border: 2px solid#8dccc8;
+    color: #418783;
+    font-size: .82em;
+    padding: 5px;
+    height: 25px;
+    border-radius: 1000px;
+    font-weight: 700;
+    box-shadow: 0px 6px 8px -8px grey;
+    cursor: pointer;
+    background-color: rgba(211,211,211,.2)
+  }
+
+  .btn-edit:hover, .btn-done:hover, .btn-cancel:hover, .btn-remove:hover {
+    opacity: .8 ;
+  }
+
+
+
+.btn-edit{
+    margin-left: 20px;
+
+    border: 2px solid #8dccc8;
+    color: #418783;
+    font-size: .82em;
+    padding: 5px;
+    height: 25px;
+    border-radius: 1000px;
+    font-weight: 700;
+    box-shadow: 0px 6px 8px -8px grey;
+    cursor: pointer;
+    background-color: rgba(211,211,211,.2)
+  }
+
+
+
+.btn-done{
+  margin-left: 20px;
+  border: 2px solid lightgreen;
+  color: #469946;
+  font-size: .82em;
+  padding: 5px;
+  height: 25px;
+  border-radius: 1000px;
+  font-weight: 700;
+  box-shadow: 0px 6px 8px -8px grey;
+  cursor: pointer;
+  background-color: rgba(211,211,211,.2)
+}
